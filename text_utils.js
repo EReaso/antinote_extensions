@@ -3,7 +3,7 @@ import Command from "./Antinote/command.js"
 
 const ext = new Extension("Text");
 
-const empty_line_remover = new Command("remove_empty_lines", ["noteContent"], ext);
+const empty_line_remover = new Command("remove_empty_lines", ["noteContent"], [], ext);
 empty_line_remover.execute = content => {
   let lines = content.split("\n");
   let filtered = lines.filter(line => line!=="\n");
@@ -22,4 +22,9 @@ line_appender.execute = (content, prepend) => {
   let lines = content.split("\n");
   let prepended = lines.map(line => prepend + line);
   return prepended.join("");
+};
+
+const reverser = new Command("reverse", ["noteContent"], [], ext);
+reverser.execute = content => {
+  return "\U+202E" + content;
 };
